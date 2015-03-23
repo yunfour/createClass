@@ -1,7 +1,5 @@
 #createClass
 
----
-
 
 这是一个CMD模块，建议使用seajs加载调用该模块提供的功能。该模块抛出了一个函数：createClass(conf)，通过该函数可以创建一个javascript类（构造函数），该函数实现了类的（多）继承、私有变量的管理。通过该函数创建的类的实例，都会拥有三个共同的方法：setAttr()、setAttr()、instanceOf()，前两个方法是对实例的私有属性的管理，instanceOf()方法是判断继承关系。
 
@@ -159,11 +157,11 @@ obj instanceof SuperClass2 // 结果为false
 obj instanceof SuperClass3 // 结果为false
 ```
 
-为什么会这样，我不在赘述，相信了解JS原型继承的人都能明白。为了尽量弥补这个问题，在使用createClass创建的类的原型链上都会有一个instanceOf(SuperClass)的方法，这个方法的实现很简单：先去使用instanceof运算符去判断继承关系，如果结构为false，在去实例的父类数组中比对，如果SuperClass出现在父类数组中则说明实例和SuperClass存在继承关系。
+为什么会这样，我不再赘述，相信了解JS原型继承的人都能明白。为了尽量弥补这个问题，在使用createClass创建的类的原型链上都会有一个instanceOf(SuperClass)的方法，这个方法的实现很简单：先去使用instanceof运算符去判断继承关系，如果结果为false，在去实例的父类数组中比对，如果SuperClass出现在父类数组中则说明实例和SuperClass存在继承关系。
 
 
 ### 多态
-在java语言中的多态的形式就是，对象的某个方法可以有不同的使用方式：可以有不同返回值、可以有不同的参数等，不过这个问题在JS中根本就不是问题，JS中function的参数本来就是非常灵活的，调用function的时候你可以任意设置参数，只要function中对其作出对应的处理，完全可以实现java的效果，也可以说JS的function就是多态的，对象的方法就是一个function，其多台的特性不言自明。
+在java语言中的多态的形式就是，对象的某个方法可以有不同的使用方式——可以有不同返回值、可以有不同的参数等，不过这个问题在JS中根本就不是问题，JS中function的参数本来就是非常灵活的，调用function的时候你可以任意设置参数，只要function中对其作出对应的处理，完全可以实现java的效果，也可以说JS的function就是多态的，对象的方法就是一个function，其多台的特性不言自明。
 
 
 ### 接口
@@ -297,7 +295,7 @@ var Dialog = createClass({
 });
 ```
 
-至此Dialog组件定义完毕，创建组件的基本流程已经体现出来，至于其逻辑包括组件的UI样式，不在此完全的展现。根据Widget的标准，要使用组件是需要创建组件类的实例，然后调用实例的render()方法将其渲染后，可以对其操作，不在需要组件时将其释放销毁。
+至此Dialog组件定义完毕，创建组件的基本流程已经体现出来，至于其逻辑包括组件的UI样式，不在此完全的展现。根据Widget的标准，要使用组件是需要创建组件类的实例，然后调用实例的render()方法将其渲染后，可以对其操作，当组件实例对象已经完成一任务时，则将其释放销毁。
 
 ```js
 // 使用Dialog组件
