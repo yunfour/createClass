@@ -95,7 +95,7 @@ seajs.use('./dist/createClass.js', function(createClass) {
     // 创建Person类的实例
     var p1 = new Person('Lucy');
     
-    var s1 = new Student('John', 'body');
+    var s1 = new Student('John', 'boy');
     
     // 调用showInfo方法，显示名字信息
     p1.showInfo();  // 输出：My name is Lucy.
