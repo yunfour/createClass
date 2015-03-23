@@ -1,7 +1,7 @@
 #createClass
 
 
-这是一个CMD模块，建议使用seajs加载调用该模块提供的功能。该模块抛出了一个函数：createClass(conf)，通过该函数可以创建一个javascript类（构造函数），该函数实现了类的（多）继承、私有变量的管理。通过该函数创建的类的实例，都会拥有三个共同的方法：setAttr()、setAttr()、instanceOf()，前两个方法是对实例的私有属性的管理，instanceOf()方法是判断继承关系。
+这是一个CMD模块，建议使用seajs加载调用该模块提供的功能。该模块抛出了一个函数：createClass(conf)，通过该函数可以创建一个javascript类（构造函数），该函数实现了类的（多）继承、私有变量的管理。通过该函数创建的类的实例，都会拥有三个相同的方法：setAttr()、setAttr()、instanceOf()，前两个方法是对实例的私有属性的管理，instanceOf()方法是判断继承关系。
 
 ---
 
