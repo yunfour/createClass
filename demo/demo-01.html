@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>创建类、判断继承关系</title>
+
+<script src="../lib/seajs/2.0.0/sea.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+seajs.use('../dist/createClass.js', function(createClass) {
+    
+    var Person = createClass({
+        
+        init: function(name) {
+            
+            this.setAttr('name', name);
+        },
+        
+        methods: {
+            
+            showName: function() {
+                
+                console.log('My name is ' + this.getAttr('name') + '.');
+            }
+        }
+    });
+    
+    var Student = createClass({
+        
+        superClass: Person,
+        
+        init: function(name, sex) {
+            
+            this.setAttr('sex', sex);
+        },
+        
+        methods: {
+            
+            showSex: function() {
+                
+                console.log(this.getAttr('name') + ' is a ' + this.getAttr('sex') + '.');
+            }
+        }
+    });
+    
+    var person = new Person('John');
+    
+    var student = new Student('Lucy', 'girl');
+    
+    //console.log(person);
+    //console.log(student);
+    
+    person.showName();
+    student.showName(); // showName方法来自父类Person
+    student.showSex();
+    
+    // 继承关系
+    console.log(person instanceof Person);      // true
+    console.log(person instanceof Student);     // false
+    console.log(student instanceof Person);     // true
+    console.log(student instanceof Student);    // true
+    
+    console.log(person.instanceOf(Person));     // true
+    console.log(student.instanceOf(Student));   // true
+    console.log(person.instanceOf(Student));    // false
+    console.log(student.instanceOf(Person));    // true
+    
+    console.log(person.instanceOf(Object));     // true
+    console.log(student.instanceOf(Object));    // true
+});
+</script>
+</body>
+</html>

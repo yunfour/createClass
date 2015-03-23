@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>多继承</title>
+
+<script src="../lib/seajs/2.0.0/sea.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+seajs.use('../dist/createClass.js', function(createClass) {
+    
+    /*
+     * 多继承就是一个类继承多个父类，在下面的例子中模拟的是，智能手机SmartMobile
+     * 继承：Mobile类和Computer类，智能手机同时拥有手机和计算机的功能
+     */
+    
+    var Mobile = createClass({
+        
+        methods: {
+            
+            call: function() {
+                
+                console.log('通话功能！');
+            },
+            message: function() {
+                
+                console.log('短消息功能！');
+            }
+        }
+    });
+    
+    var Computer = createClass({
+        
+        methods: {
+            
+            game: function() {
+                
+                console.log('打游戏功能');
+            },
+            playVideo: function() {
+                
+                console.log('播放视频功能');
+            },
+            playMusic: function() {
+                
+                console.log('播放音乐功能');
+            }
+        }
+    });
+    
+    var SmartMobile = createClass({
+        
+        superClass: [Mobile, Computer],
+        
+        methods: {
+            
+            photo: function() {
+                
+                console.log('拍照功能');
+            }
+        }
+    });
+    
+    var sMobile = new SmartMobile();
+    
+    sMobile.call();         // 该方法来自父类Mobile
+    sMobile.message();      // 该方法来自父类Mobile
+    sMobile.game();         // 该方法来自父类Computer
+    sMobile.playMusic();    // 该方法来自父类Computer
+    sMobile.playVideo();    // 该方法来自父类Computer
+    sMobile.photo();        // 该方法来自类SmartMobile
+    
+    // 继承关系
+    console.log(sMobile instanceof SmartMobile);    // true
+    console.log(sMobile instanceof Mobile);         // true
+    // 使用instanceof运算符只能判断出第一个父类的继承关系，之后的父类可以使用instanceOf()方法去判断
+    console.log(sMobile instanceof Computer);       // false
+    
+    console.log(sMobile.instanceOf(SmartMobile));   // true
+    console.log(sMobile.instanceOf(Mobile));        // true
+    console.log(sMobile.instanceOf(Computer));      // true
+});
+</script>
+</body>
+</html>
